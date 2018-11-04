@@ -1,23 +1,44 @@
 from random import *
-question = input('Хотите сыграть в игру? ')
-while question == 'Да':
-    print('Загадано четырехбуквенное слово из букв "А", "Е", "Н", "О", "С", "Т"')
-    print('Отгадайте')
-    L =[1040, 1045, 1053, 1054, 1057,1058]
-    w1 = choice(L)
-    w2 = choice(L)
-    w3 = choice(L)
-    w4 = choice(L)
-    word = chr(w1) + chr(w2) + chr(w3) + chr(w4)
+print('Загадано четырехбуквенное слово из букв "А", "Е", "Н", "О", "С", "Т"')
+lol =['А', 'Е', 'Н', 'О', 'С', 'Т']
+w = random.sample(lol, 4)
+word = (''.join(w))
 
-    counter = 1
-    while counter < 11:
-        a_word = input('{} {} '.format('Попытка №', counter))
+counter = 1
+a_word = []
+t = 0
+r = 0
+while counter < 11:
+    a_word = input('{} {} '.format('Попытка №', counter))
+    counter += 1
+    y = 0
+    for w in a_word:
+        if w == word[0] or w == word[1] or w == word[2] or w == word[3]:
+            y += 1
+        t = 0
+        r = 0
         counter += 1
-    if word == a_word:
-        print('Вы выиграли! =)')
-    else:
-        print('Вы проиграли =(')
-    print('Было загадано', word)
-else:
-    break
+        if counter > 10:
+            print('Вы проиграли =(')
+            print('Было загадано: ', word)
+            break
+        if word[0] == a_word[0]:
+            t += 1
+        else:
+            r += 1
+        if word[1] == a_word[1]:
+            t += 1
+        else:
+            r += 1
+        if word[2] == a_word[2]:
+            t += 1
+        else:
+            r += 1
+        if word[3] == a_word[3]:
+            t += 1
+        else:
+            r += 1
+        print('На "своем месте"', t)
+        print('На "чужом месте"', y - t)
+if word == a_word:
+    print('Вы выиграли! =)')
